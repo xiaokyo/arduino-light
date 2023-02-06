@@ -1,25 +1,27 @@
 #include "wrapper_header.h"
 
+// blinker key
 char auth[] = "c1d3d29e7cc4";
+// wifi 名称
 char ssid[] = "9-1-10";
+// wifi 密码
 char pswd[] = "qw123123";
 
 // 新建组件对象
 BlinkerButton Button1((char *)"btn-abc");
 BlinkerButton Button2((char *)"btn-cba");
-BlinkerNumber Number1((char *)"num-abc");
 
 /**
  * 开灯
-*/
+ */
 void openLight()
 {
   digitalWrite(D2, HIGH);
 }
 
-/** 
+/**
  * 关灯
-*/
+ */
 void closeLight()
 {
   digitalWrite(D2, LOW);
