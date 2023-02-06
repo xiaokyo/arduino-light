@@ -8,8 +8,8 @@ char ssid[] = "9-1-10";
 char pswd[] = "qw123123";
 
 // 新建组件对象
-BlinkerButton Button1((char *)"btn-abc");
-BlinkerButton Button2((char *)"btn-cba");
+BlinkerButton Button_open_light((char *)"open-light");
+BlinkerButton Button_close_light((char *)"close-light");
 
 /**
  * 开灯
@@ -28,13 +28,13 @@ void closeLight()
 }
 
 // 按下按键即会执行该函数
-void button1_callback(const String &state)
+void button_open_light_handle(const String &state)
 {
   BLINKER_LOG("get button state: ", state);
   openLight();
 }
 
-void button2_callback(const String &state)
+void button_close_light_handle(const String &state)
 {
   BLINKER_LOG("get button state: ", state);
   closeLight();
@@ -45,13 +45,14 @@ void setup()
   // 初始化串口
   Serial.begin(115200);
 
+  // 初始化
   pinMode(D2, OUTPUT);
   digitalWrite(D2, LOW);
 
   // 初始化blinker
   Blinker.begin(auth, ssid, pswd);
-  Button1.attach(button1_callback);
-  Button2.attach(button2_callback);
+  Button_open_light.attach(button_open_light_handle);
+  Button_close_light.attach(button_close_light_handle);
 }
 
 void loop()
