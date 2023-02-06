@@ -7,7 +7,7 @@ char ssid[] = "9-1-10";
 // wifi 密码
 char pswd[] = "qw123123";
 
-const LIGHT = D2;
+int LIGHT = D2;
 
 // 新建组件对象
 BlinkerButton button_switch_light((char *)"open-light");
