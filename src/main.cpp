@@ -24,13 +24,6 @@ void button_switch_light_handle(const String &state)
   digitalWrite(LIGHT, !digitalRead(LIGHT));
 }
 
-/**
- * 初始化台灯blinker状态
-*/
-void read_button_switch_state() {
-  button_switch_light.print(digitalRead(LIGHT) == 0 ? "off" : "on");
-}
-
 void setup()
 {
   // 初始化串口
@@ -39,8 +32,6 @@ void setup()
   // 初始化
   pinMode(LIGHT, OUTPUT);
   digitalWrite(LIGHT, LOW);
-
-  read_button_switch_state();
 
   // 初始化blinker
   Blinker.begin(auth, ssid, pswd);
