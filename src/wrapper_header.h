@@ -2,6 +2,8 @@
 
 #define BLINKER_WIFI
 
+#define BLINKER_MIOT_LIGHT
+
 #include <Blinker.h>
 
 /**
