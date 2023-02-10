@@ -1,11 +1,12 @@
 #include "wrapper_header.h"
+#include "server.h"
 
 // blinker key
-char auth[] = "c1d3d29e7cc4";
+const char auth[] = "c1d3d29e7cc4";
 // wifi 名称
-char ssid[] = "9-1-10";
+const char ssid[] = "9-1-10";
 // wifi 密码
-char pswd[] = "qw123123";
+const char pswd[] = "qw123123";
 
 /**
  * 台灯
@@ -58,10 +59,13 @@ void setup()
   Blinker.begin(auth, ssid, pswd);
   button_switch_light.attach(button_switch_light_handle);
   BlinkerMIOT.attachPowerState(miotPowerState);
+
+  server_start();
 }
 
 void loop()
 {
   button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
+  server_loop();
   Blinker.run();
 }
