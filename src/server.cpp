@@ -1,4 +1,5 @@
 #include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 
 ESP8266WebServer server(80);
 
@@ -24,13 +25,23 @@ void handleNotFound()
     server.send(404, "text/plain", message);
 }
 
-void server_start()
+void server_setup()
 {
-    server.on("/", handleRoot);
-    server.onNotFound(handleNotFound);
+
+    if (MDNS.begin("esp8266"))
+    {
+        Serial.println("MDNS responder started");
+    }
 
     server.begin();
     Serial.println("HTTP server started");
+}
+
+void server_init_router()
+{
+    // init router
+    server.on("/", handleRoot);
+    server.onNotFound(handleNotFound);
 }
 
 void server_loop()

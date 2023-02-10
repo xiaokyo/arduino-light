@@ -60,12 +60,13 @@ void setup()
   button_switch_light.attach(button_switch_light_handle);
   BlinkerMIOT.attachPowerState(miotPowerState);
 
-  server_start();
+  server_init_router();
+  server_setup();
 }
 
 void loop()
 {
-  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
+  // button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
   server_loop();
   Blinker.run();
 }
