@@ -18,17 +18,12 @@ BlinkerButton button_switch_light((char *)"switch-light");
 // 按下按键即会执行该函数
 void button_switch_light_handle(const String &state)
 {
-  BLINKER_LOG("get switch state: ", state);
-
-  button_switch_light.print(state == BLINKER_CMD_ON ? "on" : "off");
   digitalWrite(LIGHT, !digitalRead(LIGHT));
 }
 
 // 小爱同学配置
 void miotPowerState(const String &state)
 {
-  BLINKER_LOG("need set power state: ", state);
-
   if (state == BLINKER_CMD_ON)
   {
     digitalWrite(LIGHT, HIGH);
@@ -64,4 +59,5 @@ void loop()
 {
   button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
   Blinker.run();
+  delay(100);
 }
