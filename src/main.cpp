@@ -3,9 +3,9 @@
 // blinker key
 char auth[] = "c1d3d29e7cc4";
 // wifi 名称
-char ssid[] = "CuJia"; // "9-1-10";
+char ssid[] = "9-1-10"; // "9-1-10";
 // wifi 密码
-char pswd[] = "cckj1688";
+char pswd[] = "qw123123";
 
 /**
  * 台灯
