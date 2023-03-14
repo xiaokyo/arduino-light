@@ -21,7 +21,6 @@ void button_switch_light_handle(const String &state)
   digitalWrite(LIGHT, !digitalRead(LIGHT));
   Serial.print("当前灯状态:");
   Serial.println(digitalRead(LIGHT));
-  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
 }
 
 // 小爱同学配置
@@ -43,6 +42,14 @@ void miotPowerState(const String &state)
   }
 }
 
+/**
+ * 心跳返回状态
+ */
+void blinker_heartbeat()
+{
+  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
+}
+
 void setup()
 {
   // 初始化串口
@@ -56,10 +63,11 @@ void setup()
   Blinker.begin(auth, ssid, pswd);
   button_switch_light.attach(button_switch_light_handle);
   BlinkerMIOT.attachPowerState(miotPowerState);
+  Blinker.attachHeartbeat(blinker_heartbeat);
 }
 
 void loop()
 {
   Blinker.run();
-  delay(2);
+  Blinker.delay(2);
 }
