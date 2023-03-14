@@ -3,9 +3,9 @@
 // blinker key
 char auth[] = "c1d3d29e7cc4";
 // wifi 名称
-char ssid[] = "9-1-10";
+char ssid[] = "CuJia"; // "9-1-10";
 // wifi 密码
-char pswd[] = "qw123123";
+char pswd[] = "cckj1688";
 
 /**
  * 台灯
@@ -19,6 +19,9 @@ BlinkerButton button_switch_light((char *)"switch-light");
 void button_switch_light_handle(const String &state)
 {
   digitalWrite(LIGHT, !digitalRead(LIGHT));
+  Serial.print("当前灯状态:");
+  Serial.println(digitalRead(LIGHT));
+  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
 }
 
 // 小爱同学配置
@@ -57,7 +60,6 @@ void setup()
 
 void loop()
 {
-  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
   Blinker.run();
-  delay(100);
+  delay(2);
 }
