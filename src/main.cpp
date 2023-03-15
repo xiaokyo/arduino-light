@@ -15,12 +15,22 @@ int LIGHT = D2;
 // 新建组件对象
 BlinkerButton button_switch_light((char *)"switch-light");
 
+/**
+ * 心跳返回状态
+ */
+void blinker_heartbeat()
+{
+  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
+}
+
 // 按下按键即会执行该函数
 void button_switch_light_handle(const String &state)
 {
   digitalWrite(LIGHT, !digitalRead(LIGHT));
   Serial.print("当前灯状态:");
   Serial.println(digitalRead(LIGHT));
+
+  blinker_heartbeat();
 }
 
 // 小爱同学配置
@@ -42,14 +52,6 @@ void miotPowerState(const String &state)
   }
 }
 
-/**
- * 心跳返回状态
- */
-void blinker_heartbeat()
-{
-  button_switch_light.print(digitalRead(LIGHT) == 1 ? "on" : "off");
-}
-
 void setup()
 {
   // 初始化串口
@@ -69,5 +71,4 @@ void setup()
 void loop()
 {
   Blinker.run();
-  Blinker.delay(2);
 }
