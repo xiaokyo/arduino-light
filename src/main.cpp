@@ -26,11 +26,11 @@ void blinker_heartbeat()
 // 按下按键即会执行该函数
 void button_switch_light_handle(const String &state)
 {
-  digitalWrite(LIGHT, !digitalRead(LIGHT));
+  int needSetState = !digitalRead(LIGHT);
+  digitalWrite(LIGHT, needSetState);
   Serial.print("当前灯状态:");
-  Serial.println(digitalRead(LIGHT));
-
-  blinker_heartbeat();
+  Serial.println(needSetState);
+  button_switch_light.print(needSetState == 1 ? "on" : "off");
 }
 
 // 小爱同学配置
